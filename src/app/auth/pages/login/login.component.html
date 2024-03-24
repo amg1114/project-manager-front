@@ -1,1 +1,23 @@
-<p>login works!</p>
+<div class="flex justify-center items-center h-screen w-full">
+    <div class="w-4/5 max-w-screen-md p-10 mx-auto bg-beige-1 rounded">
+        <form method="post">
+            <h2 class="mb-8 text-center text-3xl uppercase">Login</h2>
+            <div class="mb-5">
+                <input
+                    class="block w-full p-2.5 rounded border-0 focus:border-b-2 border-blue-neutral focus-visible:outline-none"
+                    type="email"
+                    placeholder="Email"
+                />
+            </div>
+            <div class="mb-5">
+                <input
+                    class="block w-full p-2.5 rounded border-0 focus:border-b-2 border-blue-neutral focus-visible:outline-none"
+                    type="password"
+                    placeholder="Password"
+                />
+            </div>
+            <button class="block px-5 py-2.5 mx-auto mt-8 mb-2.5 rounded text-white bg-blue-light-2 hover:bg-blue-dark transition-colors" type="submit">Login</button>
+            <a class="block mx-auto text-blue-light-2 text-center" routerLink="register">You don't have an Account?</a>
+        </form>
+    </div>
+</div>
