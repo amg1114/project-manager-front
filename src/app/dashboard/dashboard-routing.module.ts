@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
-import { WorkflowComponent } from './pages/workflow/workflow.component';
 import { RouterModule, Routes } from '@angular/router';
-import { TeamComponent } from './pages/team/team.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { WorkflowComponent } from './pages/workflow/workflow.component';
 
 
 const routes: Routes = [
     {
-        path: ':slug',
-        component: WorkflowComponent,
+        path: '',
+        component: DashboardComponent,
+        children: [
+            {
+                path: ':slug',
+                component: WorkflowComponent
+            }
+        ]
     },
     {
         path: '**',
