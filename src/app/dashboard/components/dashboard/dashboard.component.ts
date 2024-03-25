@@ -4,6 +4,7 @@ import { AuthService } from '../../../auth/services/auth.service';
 import { UserI } from '../../interfaces/user.interface';
 import { UsersService } from '../../services/users.service';
 import { WorkflowsService } from '../../services/workflows.service';
+import { WorkflowI } from '../../interfaces/workflow.interface';
 
 @Component({
     selector: 'app-dashboard',
@@ -19,7 +20,7 @@ export class DashboardComponent {
     ) {}
 
     public user?: UserI;
-    public workflows: any[] = [];
+    public workflows: WorkflowI[] = [];
 
     async ngOnInit() {
         const loggedUser = this.authService.getLoggedUser();
@@ -28,23 +29,20 @@ export class DashboardComponent {
         }
 
         this.getUser();
-        this.getUserWorkflows();
+        
     }
 
     getUser() {
         const loggedUser = this.authService.getLoggedUser();
-        this.usersService
-            .getUser(loggedUser!.sub)
-            .subscribe((user) => (this.user = user));
-    }
+        this.usersService.getUser(loggedUser!.sub).subscribe((user) => {
+            this.user = user;
+            this.workflows = user.workflowsToManagers.map(
+                (rel) => rel.workflow
+            );
 
-    getUserWorkflows() {
-        const loggedUser = this.authService.getLoggedUser();
-
-        this.workflowsService
-            .getWorkflows(loggedUser!.sub)
-            .subscribe((workflows) => {
-                this.workflows = workflows;
-            });
+            if(this.workflows.length > 0 && this.router.url === "/dashboard"){
+              this.router.navigate(['/dashboard/'+this.workflows[0].slug])  
+            }
+        });
     }
 }
