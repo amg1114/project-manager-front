@@ -15,9 +15,7 @@
     <div class="">
         <h4 class="flex items-center justify-between px-2 py-1 rounded">
             Projects
-            <span
-                class="material-symbols-outlined text-sm transform rotate-90"
-            >
+            <span class="material-symbols-outlined text-sm transform rotate-90">
                 arrow_forward_ios
             </span>
         </h4>
@@ -39,11 +37,13 @@
     </div>
 </nav>
 
-<div class="flex gap-2 items-center mt-auto">
+<div class="flex gap-2 items-center mt-auto" *ngIf="user">
     <div
         class="flex w-9 h-9 justify-center items-center font-light bg-blue-light-1 rounded-lg"
     >
-        UN
+        {{ userThumb | uppercase }}
     </div>
-    <h3 class="font-semibold text-gray-800">User Name</h3>
+    <h3 class="font-semibold text-gray-800">
+        {{ user.firstName }} {{ user.lastName }}
+    </h3>
 </div>
