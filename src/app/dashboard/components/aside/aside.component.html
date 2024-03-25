@@ -1,40 +1,41 @@
 <div class="flex gap-2 items-center mb-5">
     <div
-        class="flex w-9 h-9 justify-center items-center font-light bg-blue-light-1 rounded-lg" *ngIf="workflow"
+        class="flex w-9 h-9 justify-center items-center font-light bg-blue-light-1 rounded-lg"
+        *ngIf="workflow"
     >
-       {{ workflowThumb| uppercase }}
+        {{ workflowThumb | uppercase }}
     </div>
     <h3 class="font-semibold text-gray-800">Dashboard</h3>
 </div>
-<nav>
+<nav class="space-y-2">
     <div class="">
-        <a class="flex items-center justify-between px-2 py-1 rounded">
-            Tasks
+        <a class="flex items-center px-2 py-1 rounded cursor-pointer hover:bg-white/70 hover:text-blue-neutral transition-colors">
+            <span class="material-symbols-outlined mr-2"> check_box </span> Tasks
         </a>
     </div>
     <div class="">
-        <h4 class="flex items-center justify-between px-2 py-1 rounded">
-            Projects
-            <span class="material-symbols-outlined text-sm">
+        <a class="flex items-center px-2 py-1 rounded cursor-pointer hover:bg-white/70 hover:text-blue-neutral transition-colors">
+            <span class="material-symbols-outlined mr-2"> cards </span>Projects
+            <span class="material-symbols-outlined text-sm ml-auto">
                 arrow_forward_ios
             </span>
-        </h4>
+        </a>
     </div>
     <div class="">
-        <h4 class="flex items-center justify-between px-2 py-1 rounded">
-            Teams
-            <span class="material-symbols-outlined text-sm">
+        <a class="flex items-center px-2 py-1 rounded cursor-pointer hover:bg-white/70 hover:text-blue-neutral transition-colors">
+            <span class="material-symbols-outlined mr-2"> groups </span>Teams
+            <span class="material-symbols-outlined text-sm ml-auto">
                 arrow_forward_ios
             </span>
-        </h4>
+        </a>
     </div>
     <div class="">
-        <h4 class="flex items-center justify-between px-2 py-1 rounded">
-            Workflows
-            <span class="material-symbols-outlined text-sm transform rotate-90">
+        <a class="flex items-center px-2 py-1 rounded cursor-pointer hover:bg-white/70 hover:text-blue-neutral transition-colors">
+            <span class="material-symbols-outlined mr-2"> workspaces </span>Workflows
+            <span class="material-symbols-outlined text-sm ml-auto">
                 arrow_forward_ios
             </span>
-        </h4>
+        </a>
     </div>
 </nav>
 
