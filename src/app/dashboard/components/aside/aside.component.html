@@ -1,4 +1,7 @@
-<div class="flex gap-2 items-center mb-5">
+<div
+    class="flex gap-2 items-center mb-5 cursor-pointer"
+    [routerLink]="'dashboard/' + workflow?.slug"
+>
     <div
         class="flex w-9 h-9 justify-center items-center font-light bg-blue-light-1 rounded-lg"
     >
@@ -21,9 +24,6 @@
         class="flex items-center px-2 py-1 rounded cursor-pointer hover:bg-white/70 hover:text-blue-neutral transition-colors"
     >
         <span class="material-symbols-outlined mr-2"> cards </span>Projects
-        <span class="material-symbols-outlined text-sm ml-auto">
-            arrow_forward_ios
-        </span>
     </a>
 
     <a
@@ -32,9 +32,6 @@
         class="flex items-center px-2 py-1 rounded cursor-pointer hover:bg-white/70 hover:text-blue-neutral transition-colors"
     >
         <span class="material-symbols-outlined mr-2"> groups </span>Teams
-        <span class="material-symbols-outlined text-sm ml-auto">
-            arrow_forward_ios
-        </span>
     </a>
 
     <a
@@ -44,9 +41,6 @@
     >
         <span class="material-symbols-outlined mr-2"> workspaces </span
         >Workflows
-        <span class="material-symbols-outlined text-sm ml-auto">
-            arrow_forward_ios
-        </span>
     </a>
 </nav>
 

@@ -22,7 +22,7 @@ export class WorkflowsService {
 
     public getWorkflowBySlug(workflow_slug: string, manager_id: number) {
         return this.httpClient.get<WorkflowI>(
-            `${this.api_endpoint}/${manager_id}/${workflow_slug}`
+            `${this.api_endpoint}/manager/${manager_id}/${workflow_slug}`
         );
     }
 }

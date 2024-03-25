@@ -5,11 +5,18 @@ import { WorkflowComponent } from './pages/workflow/workflow.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { TeamsComponent } from './pages/teams/teams.component';
+import { WorkflowsComponent } from './pages/workflows/workflows.component';
 
 const routes: Routes = [
     {
         path: '',
         component: DashboardComponent,
+        children: [
+            {
+                path: 'workflows',
+                component: WorkflowsComponent
+            }
+        ]
     },
     {
         path: ':slug',
@@ -33,6 +40,7 @@ const routes: Routes = [
             }
         ],
     },
+    
     {
         path: '**',
         redirectTo: '',
