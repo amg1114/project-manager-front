@@ -8,6 +8,10 @@ import { TaskCardComponent } from './components/task-card/task-card.component';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
 import { WorkflowComponent } from './pages/workflow/workflow.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TasksComponent } from './pages/tasks/tasks.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { TeamsComponent } from './pages/teams/teams.component';
+import { WorkflowsComponent } from './pages/workflows/workflows.component';
 
 @NgModule({
     declarations: [
@@ -16,6 +20,10 @@ import { HttpClientModule } from '@angular/common/http';
         TaskCardComponent,
         ProjectCardComponent,
         WorkflowComponent,
+        TasksComponent,
+        ProjectsComponent,
+        TeamsComponent,
+        WorkflowsComponent,
     ],
     imports: [CommonModule, HttpClientModule, DashboardRoutingModule],
 })

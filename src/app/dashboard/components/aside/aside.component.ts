@@ -14,9 +14,13 @@ export class AsideComponent {
     public workflow?: WorkflowI;
 
     get workflowThumb(): string {
-        const words = this.workflow!.title.split(' ');
         let thumb = '';
-        words.forEach((word) => (thumb += word[0]));
+        if (this.workflow) {
+            const words = this.workflow.title.split(' ');
+            words.forEach((word) => (thumb += word[0]));
+        } else {
+            thumb = 'W';
+        }
 
         return thumb;
     }

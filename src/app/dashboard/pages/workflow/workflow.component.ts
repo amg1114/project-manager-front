@@ -38,8 +38,6 @@ export class WorkflowComponent implements OnInit {
             )
             .subscribe((workflow) => {
                 if (!workflow) return this.router.navigateByUrl('');
-                console.log(workflow);
-                
                 return (this.workflow = workflow);
             });
     }

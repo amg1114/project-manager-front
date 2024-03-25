@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { WorkflowComponent } from './pages/workflow/workflow.component';
+import { TasksComponent } from './pages/tasks/tasks.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { TeamsComponent } from './pages/teams/teams.component';
 
 const routes: Routes = [
     {
@@ -16,6 +19,18 @@ const routes: Routes = [
                 path: '',
                 component: WorkflowComponent,
             },
+            {
+                path: 'tasks',
+                component: TasksComponent,
+            },
+            {
+                path: 'projects',
+                component: ProjectsComponent,
+            },
+            {
+                path: 'teams',
+                component: TeamsComponent,
+            }
         ],
     },
     {
