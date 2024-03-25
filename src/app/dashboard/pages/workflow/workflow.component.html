@@ -1,7 +1,13 @@
 <div
     class="flex-1 grid gap-x-6 grid-cols-12 grid-rows-1 px-10 py-5 justify-items-stretch"
+    *ngIf="workflow; else loading"
 >
-    <div class="col-span-8 overflow-scroll">
+    <div class="col-span-full">
+        <h2 class="text-2xl font-semibold text-blue-neutral">
+            {{ workflow.title }}
+        </h2>
+    </div>
+    <div class="col-span-8 pt-5 overflow-scroll">
         <h3 class="text-xl font-semibold text-gray-600 mb-3">Active Tasks</h3>
         <section>
             <div
@@ -54,8 +60,20 @@
             </div>
         </section>
     </div>
-    <div class="p-5 col-span-4 overflow-scroll rounded bg-blue-light-2/20">
+    <div class="col-span-4 p-5 overflow-scroll rounded bg-blue-light-2/20">
         <h3 class="text-xl font-semibold text-gray-600 mb-3">Projects</h3>
         <dashboard-project-card></dashboard-project-card>
     </div>
 </div>
+
+<ng-template #loading>
+    <div
+        class="absolute inset-0 h-full w-full flex items-center justify-center"
+    >
+        <span
+            class="material-symbols-outlined text-6xl text-blue-neutral animate-spin"
+        >
+            progress_activity
+        </span>
+    </div>
+</ng-template>
