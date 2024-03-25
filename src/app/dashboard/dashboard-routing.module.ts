@@ -3,17 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { WorkflowComponent } from './pages/workflow/workflow.component';
 
-
 const routes: Routes = [
     {
         path: '',
         component: DashboardComponent,
+    },
+    {
+        path: ':slug',
+        component: DashboardComponent,
         children: [
             {
-                path: ':slug',
-                component: WorkflowComponent
-            }
-        ]
+                path: '',
+                component: WorkflowComponent,
+            },
+        ],
     },
     {
         path: '**',

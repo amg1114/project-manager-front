@@ -3,8 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
 import { UserI } from '../../interfaces/user.interface';
 import { UsersService } from '../../services/users.service';
-import { WorkflowsService } from '../../services/workflows.service';
 import { WorkflowI } from '../../interfaces/workflow.interface';
+import { WorkflowsService } from '../../services/workflows.service';
+import { switchMap } from 'rxjs';
 
 @Component({
     selector: 'app-dashboard',
@@ -12,37 +13,59 @@ import { WorkflowI } from '../../interfaces/workflow.interface';
 })
 export class DashboardComponent {
     constructor(
-        private authService: AuthService,
-        private usersService: UsersService,
-        private workflowsService: WorkflowsService,
         private router: Router,
-        private activeRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private authService: AuthService,
+        private workflowsService: WorkflowsService,
+        private usersService: UsersService
     ) {}
 
     public user?: UserI;
-    public workflows: WorkflowI[] = [];
+    public workflow?: WorkflowI;
 
     async ngOnInit() {
         const loggedUser = this.authService.getLoggedUser();
+
         if (!loggedUser) {
             this.router.navigate(['/login']);
         }
 
+        if (this.router.url !== '/dashboard') {
+            this.getCurrentWorkflow();
+        }
+
         this.getUser();
-        
     }
 
     getUser() {
         const loggedUser = this.authService.getLoggedUser();
+
         this.usersService.getUser(loggedUser!.sub).subscribe((user) => {
             this.user = user;
-            this.workflows = user.workflowsToManagers.map(
-                (rel) => rel.workflow
-            );
-
-            if(this.workflows.length > 0 && this.router.url === "/dashboard"){
-              this.router.navigate(['/dashboard/'+this.workflows[0].slug])  
+            if (this.router.url === '/dashboard') {
+                if (this.user.workflowsToManagers.length) {
+                    const workflow =
+                        this.user.workflowsToManagers[0].workflow.slug;
+                    this.router.navigate(['/dashboard/' + workflow]);
+                }
             }
         });
+    }
+
+    getCurrentWorkflow() {
+        const loggedUser = this.authService.getLoggedUser();
+        this.activatedRoute.params
+            .pipe(
+                switchMap(({ slug }) =>
+                    this.workflowsService.getWorkflowBySlug(
+                        slug,
+                        loggedUser!.sub
+                    )
+                )
+            )
+            .subscribe((workflow) => {
+                if (!workflow) return this.router.navigateByUrl('');
+                return (this.workflow = workflow);
+            });
     }
 }

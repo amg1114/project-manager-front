@@ -11,7 +11,15 @@ export class AsideComponent {
     public user?: UserI;
 
     @Input()
-    public workflows: WorkflowI[] = [];
+    public workflow?: WorkflowI;
+
+    get workflowThumb(): string {
+        const words = this.workflow!.title.split(' ');
+        let thumb = '';
+        words.forEach((word) => (thumb += word[0]));
+
+        return thumb;
+    }
 
     get userThumb(): string {
         return this.user!.firstName[0] + this.user!.lastName[0];

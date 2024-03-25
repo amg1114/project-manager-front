@@ -14,7 +14,15 @@ export class WorkflowsService {
 
     public api_endpoint: string = 'http://localhost:8000/workflows';
 
-    public getWorkflows(manager_id:number) {
-        return this.httpClient.get<WorkflowI[]>(this.api_endpoint + "/manager/" + manager_id);
+    public getWorkflowsByManager(manager_id: number) {
+        return this.httpClient.get<WorkflowI[]>(
+            this.api_endpoint + '/manager/' + manager_id
+        );
+    }
+
+    public getWorkflowBySlug(workflow_slug: string, manager_id: number) {
+        return this.httpClient.get<WorkflowI>(
+            `${this.api_endpoint}/${manager_id}/${workflow_slug}`
+        );
     }
 }

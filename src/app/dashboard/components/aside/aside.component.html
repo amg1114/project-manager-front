@@ -1,8 +1,8 @@
 <div class="flex gap-2 items-center mb-5">
     <div
-        class="flex w-9 h-9 justify-center items-center font-light bg-blue-light-1 rounded-lg"
+        class="flex w-9 h-9 justify-center items-center font-light bg-blue-light-1 rounded-lg" *ngIf="workflow"
     >
-        WT
+       {{ workflowThumb| uppercase }}
     </div>
     <h3 class="font-semibold text-gray-800">Dashboard</h3>
 </div>
@@ -15,17 +15,10 @@
     <div class="">
         <h4 class="flex items-center justify-between px-2 py-1 rounded">
             Projects
-            <span class="material-symbols-outlined text-sm transform rotate-90">
+            <span class="material-symbols-outlined text-sm">
                 arrow_forward_ios
             </span>
         </h4>
-        <ul class="px-2">
-            <li>Project 1</li>
-            <li>Project 2</li>
-            <li>Project 3</li>
-            <li>Project 4</li>
-            <li>Project 5</li>
-        </ul>
     </div>
     <div class="">
         <h4 class="flex items-center justify-between px-2 py-1 rounded">
@@ -42,13 +35,6 @@
                 arrow_forward_ios
             </span>
         </h4>
-        <ul class="px-2">
-            <li *ngFor="let workflow of workflows">
-                <a [routerLink]="'/dashboard/' + workflow.slug">{{
-                    workflow.title
-                }}</a>
-            </li>
-        </ul>
     </div>
 </nav>
 
