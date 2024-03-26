@@ -1,0 +1,16 @@
+<div
+    class="flex items-stretch flex-wrap w-full overflow-hidden rounded-md bg-beige-1 cursor-pointer"
+    [routerLink]="['/dashboard', team.slug]"
+>
+    <div
+        class="flex justify-center items-center aspect-square w-1/6 text-2xl text-white font-bold bg-blue-light-2 mr-2"
+    >
+        {{ teamThumb }}
+    </div>
+    <div class="flex flex-wrap p-3 items-center">
+        <h3 class="flex-1 text-xl">
+            {{ team.name }} <br />
+            <small>{{ team.description }}</small>
+        </h3>
+    </div>
+</div>
