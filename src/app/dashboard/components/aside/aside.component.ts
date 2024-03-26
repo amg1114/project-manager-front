@@ -1,17 +1,56 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UserI } from '../../interfaces/user.interface';
 import { WorkflowI } from '../../interfaces/workflow.interface';
+import { AuthService } from '../../../auth/services/auth.service';
+import { WorkflowsService } from '../../services/workflows.service';
+import { ActivatedRoute } from '@angular/router';
+import { UsersService } from '../../services/users.service';
+import { of, switchMap } from 'rxjs';
 
 @Component({
     selector: 'dashboard-aside',
     templateUrl: './aside.component.html',
 })
-export class AsideComponent {
-    @Input()
+export class AsideComponent implements OnInit {
+    constructor(
+        private route: ActivatedRoute,
+        private authService: AuthService,
+        private usersService: UsersService,
+        private workflowsService: WorkflowsService
+    ) {}
+
     public user?: UserI;
 
-    @Input()
-    public workflow?: WorkflowI;
+    public workflow: WorkflowI | null = null;
+
+    ngOnInit(): void {
+        const loggedUser = this.authService.getLoggedUser();
+        if (loggedUser) {
+            this.route.params.pipe();
+            this.usersService
+                .getUser(loggedUser.sub)
+                .pipe(
+                    switchMap((user) => {
+                        this.user = user;
+                        return this.route.params;
+                    }),
+                    switchMap(({ slug }) => {
+                        if (slug) {
+                            return this.workflowsService.getWorkflowBySlug(
+                                slug,
+                                loggedUser.sub
+                            );
+                        }
+                        return of(null);
+                    })
+                )
+                .subscribe((workflow) => {
+                    if (workflow) {
+                        this.workflow = workflow;
+                    }
+                });
+        }
+    }
 
     get workflowThumb(): string {
         let thumb = '';

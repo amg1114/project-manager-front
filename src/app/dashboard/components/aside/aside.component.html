@@ -7,33 +7,35 @@
     >
         {{ workflowThumb | uppercase }}
     </div>
-    <h3 class="font-semibold text-gray-800">Dashboard</h3>
+    <h3 class="font-semibold text-gray-800">
+        {{ workflow ? workflow.title : "Dashboard" }}
+    </h3>
 </div>
 <nav class="space-y-2">
     <a
         routerLink="tasks"
         routerLinkActive="bg-white/70 text-blue-neutral"
         class="flex items-center px-2 py-1 rounded cursor-pointer hover:bg-white/70 hover:text-blue-neutral transition-colors"
+        *ngIf="workflow"
     >
         <span class="material-symbols-outlined mr-2"> check_box </span> Tasks
     </a>
-
     <a
         routerLink="projects"
         routerLinkActive="bg-white/70 text-blue-neutral"
         class="flex items-center px-2 py-1 rounded cursor-pointer hover:bg-white/70 hover:text-blue-neutral transition-colors"
+        *ngIf="workflow"
     >
         <span class="material-symbols-outlined mr-2"> cards </span>Projects
     </a>
-
     <a
         routerLink="teams"
         routerLinkActive="bg-white/70 text-blue-neutral"
         class="flex items-center px-2 py-1 rounded cursor-pointer hover:bg-white/70 hover:text-blue-neutral transition-colors"
+        *ngIf="workflow"
     >
         <span class="material-symbols-outlined mr-2"> groups </span>Teams
     </a>
-
     <a
         routerLink="/dashboard/workflows"
         routerLinkActive="bg-white/70 text-blue-neutral"
