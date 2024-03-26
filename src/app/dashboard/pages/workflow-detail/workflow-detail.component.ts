@@ -9,7 +9,7 @@ import { ProjectsService } from '../../services/projects.service';
 import { ProjectI } from '../../interfaces/project.interface';
 
 @Component({
-    selector: 'dashboard-workflow',
+    selector: 'dashboard-workflow-detail',
     templateUrl: './workflow-detail.component.html',
 })
 export class WorkflowDetailComponent implements OnInit {

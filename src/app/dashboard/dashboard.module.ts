@@ -10,7 +10,7 @@ import { WorkflowDetailComponent } from './pages/workflow-detail/workflow-detail
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { TeamsComponent } from './pages/teams/teams.component';
-import { WorkflowsComponent } from './pages/workflows/workflows.component';
+import { WorkflowListComponent } from './pages/workflow-list/workflow-list.component';
 
 import { TaskCardComponent } from './components/cards/task-card/task-card.component';
 import { ProjectCardComponent } from './components/cards/project-card/project-card.component';
@@ -28,7 +28,7 @@ import { WorkflowCardComponent } from './components/cards/workflow-card/workflow
         TasksComponent,
         ProjectsComponent,
         TeamsComponent,
-        WorkflowsComponent,
+        WorkflowListComponent,
         WorkflowCardComponent,
     ],
     imports: [CommonModule, HttpClientModule, DashboardRoutingModule],

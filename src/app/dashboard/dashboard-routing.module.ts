@@ -5,7 +5,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { TeamsComponent } from './pages/teams/teams.component';
-import { WorkflowsComponent } from './pages/workflows/workflows.component';
+import { WorkflowListComponent } from './pages/workflow-list/workflow-list.component';
 import { WorkflowDetailComponent } from './pages/workflow-detail/workflow-detail.component';
 
 const routes: Routes = [
@@ -15,7 +15,7 @@ const routes: Routes = [
         children: [
             {
                 path: 'workflows',
-                component: WorkflowsComponent
+                component: WorkflowListComponent
             }
         ]
     },
