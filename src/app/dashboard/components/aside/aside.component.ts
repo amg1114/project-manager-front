@@ -1,11 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { UserI } from '../../interfaces/user.interface';
-import { WorkflowI } from '../../interfaces/workflow.interface';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { of, switchMap } from 'rxjs';
+
 import { AuthService } from '../../../auth/services/auth.service';
 import { WorkflowsService } from '../../services/workflows.service';
-import { ActivatedRoute } from '@angular/router';
+
+import { UserI } from '../../interfaces/user.interface';
+import { WorkflowI } from '../../interfaces/workflow.interface';
 import { UsersService } from '../../services/users.service';
-import { of, switchMap } from 'rxjs';
 
 @Component({
     selector: 'dashboard-aside',

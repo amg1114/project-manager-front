@@ -1,5 +1,5 @@
 <div
-    class="flex items-stretch flex-wrap w-full overflow-hidden rounded-md bg-white cursor-pointer"
+    [ngClass]="[card_bg, 'flex items-stretch flex-wrap w-full overflow-hidden rounded-md cursor-pointer']"
     [routerLink]="project.slug"
 >
     <div

@@ -8,6 +8,9 @@ import { ProjectI } from '../../../interfaces/project.interface';
 export class ProjectCardComponent {
     @Input()
     public project!: ProjectI;
+    
+    @Input()
+    public card_bg: string = "bg-white";
 
     get projectThumb(): string {
         let thumb = '';
