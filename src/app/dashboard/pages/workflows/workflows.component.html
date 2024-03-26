@@ -1,1 +1,13 @@
-<p>workflows works!</p>
+<main class="w-full px-10 py-5">
+    <h2 class="text-2xl font-semibold text-blue-neutral mb-5">
+        Workflows
+    </h2>
+
+    <div class="grid grid-cols-3 gap-4">
+        <div *ngFor="let workflow of workflows">
+            <dashboard-workflow-card [workflow]="workflow"></dashboard-workflow-card>
+        </div>
+    </div>
+
+    
+</main>

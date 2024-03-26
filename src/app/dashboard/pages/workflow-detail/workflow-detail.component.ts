@@ -10,9 +10,9 @@ import { ProjectI } from '../../interfaces/project.interface';
 
 @Component({
     selector: 'dashboard-workflow',
-    templateUrl: './workflow.component.html',
+    templateUrl: './workflow-detail.component.html',
 })
-export class WorkflowComponent implements OnInit {
+export class WorkflowDetailComponent implements OnInit {
     constructor(
         private router: Router,
         private activatedRoute: ActivatedRoute,
@@ -38,7 +38,7 @@ export class WorkflowComponent implements OnInit {
                         .getWorkflowBySlug(slug, loggedUser!.sub)
                         .pipe(
                             catchError((err) => {
-                                this.router.navigate(['/dashboard/workflows'])
+                                this.router.navigate(['/dashboard/workflows']);
                                 return of(null);
                             })
                         )
@@ -52,6 +52,9 @@ export class WorkflowComponent implements OnInit {
                         );
                     }
                     this.loading = false;
+                    return of([]);
+                }),
+                catchError((err) => {      
                     return of([]);
                 })
             )

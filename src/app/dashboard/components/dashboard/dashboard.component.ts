@@ -5,10 +5,10 @@ import { UserI } from '../../interfaces/user.interface';
 import { UsersService } from '../../services/users.service';
 import { WorkflowI } from '../../interfaces/workflow.interface';
 import { WorkflowsService } from '../../services/workflows.service';
-import { switchMap } from 'rxjs';
+import { of, switchMap } from 'rxjs';
 
 @Component({
-    selector: 'app-dashboard',
+    selector: 'dashboard-component',
     templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent {
@@ -30,7 +30,10 @@ export class DashboardComponent {
             this.router.navigate(['/login']);
         }
 
-        if (this.router.url !== '/dashboard') {
+        if (
+            this.router.url !== '/dashboard' &&
+            this.router.url !== '/dashboard/workflows'
+        ) {
             this.getCurrentWorkflow();
         }
 
@@ -56,12 +59,15 @@ export class DashboardComponent {
         const loggedUser = this.authService.getLoggedUser();
         this.activatedRoute.params
             .pipe(
-                switchMap(({ slug }) =>
-                    this.workflowsService.getWorkflowBySlug(
-                        slug,
-                        loggedUser!.sub
-                    )
-                )
+                switchMap(({ slug }) => {
+                    if (slug) {
+                        return this.workflowsService.getWorkflowBySlug(
+                            slug,
+                            loggedUser!.sub
+                        );
+                    }
+                    return of(null);
+                })
             )
             .subscribe((workflow) => {
                 if (!workflow) return this.router.navigateByUrl('');
