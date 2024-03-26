@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkflowI } from '../../interfaces/workflow.interface';
 import { Router, ActivatedRoute } from '@angular/router';
-import { catchError, of, switchMap } from 'rxjs';
+import { catchError, forkJoin, of, switchMap } from 'rxjs';
 import { AuthService } from '../../../auth/services/auth.service';
 import { UsersService } from '../../services/users.service';
 import { WorkflowsService } from '../../services/workflows.service';
 import { ProjectsService } from '../../services/projects.service';
 import { ProjectI } from '../../interfaces/project.interface';
+import { WorkflowStatusI } from '../../interfaces/workflow-status.interface';
 
 @Component({
     selector: 'dashboard-workflow-detail',
@@ -22,7 +23,11 @@ export class WorkflowDetailComponent implements OnInit {
     ) {}
 
     public workflow?: WorkflowI;
+
     public workflowProjects: ProjectI[] = [];
+
+    public workflowStatuses: WorkflowStatusI[] = [];
+
     public loading: boolean = true;
 
     ngOnInit(): void {
@@ -47,19 +52,25 @@ export class WorkflowDetailComponent implements OnInit {
                     if (workflow) {
                         this.loading = false;
                         this.workflow = workflow;
-                        return this.projectsService.getWorkflowProjects(
-                            workflow.id
-                        );
+                        return forkJoin({
+                            projects: this.projectsService.getWorkflowProjects(
+                                workflow.id
+                            ),
+                            statuses: this.workflowsService.getWorkflowStatuses(
+                                workflow.id
+                            ),
+                        });
                     }
                     this.loading = false;
-                    return of([]);
+                    return of({ projects: [], statuses: [] });
                 }),
-                catchError((err) => {      
-                    return of([]);
+                catchError((err) => {
+                    return of({ projects: [], statuses: [] });
                 })
             )
-            .subscribe((projects) => {
+            .subscribe(({ projects, statuses }) => {
                 this.workflowProjects = projects;
+                this.workflowStatuses = statuses;
             });
     }
 }

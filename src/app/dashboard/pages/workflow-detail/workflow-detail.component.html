@@ -9,56 +9,37 @@
     </div>
     <div class="col-span-8 pt-5 overflow-scroll">
         <h3 class="text-xl font-semibold text-gray-600 mb-3">Active Tasks</h3>
-        <section>
-            <div
-                class="flex justify-between w-full mb-2 px-2 py-1 text-white rounded bg-blue-neutral"
-            >
-                Status A
-                <span
-                    class="flex justify-center items-center px-1 rounded text-gray-600 bg-beige-1"
-                    >4</span
+        <p *ngIf="workflowStatuses.length === 0; else statuses">
+            This workflow has not statuses
+        </p>
+        <ng-template #statuses>
+            <section *ngFor="let status of workflowStatuses">
+                <div
+                    class="flex justify-between w-full mb-2 px-2 py-1 text-white rounded bg-blue-neutral"
                 >
-            </div>
-            <div class="flex flex-wrap">
-                <dashboard-task-card
-                    class="flex flex-wrap w-1/2 pb-3 even:pl-3"
-                ></dashboard-task-card>
-                <dashboard-task-card
-                    class="flex flex-wrap w-1/2 pb-3 even:pl-3"
-                ></dashboard-task-card>
-                <dashboard-task-card
-                    class="flex flex-wrap w-1/2 pb-3 even:pl-3"
-                ></dashboard-task-card>
-                <dashboard-task-card
-                    class="flex flex-wrap w-1/2 pb-3 even:pl-3"
-                ></dashboard-task-card>
-            </div>
-        </section>
-        <section>
-            <div
-                class="flex justify-between w-full mb-2 px-2 py-1 text-white rounded bg-blue-neutral"
-            >
-                Status B
-                <span
-                    class="flex justify-center items-center px-1 rounded text-gray-600 bg-beige-1"
-                    >4</span
+                    {{ status.title }}
+                    <span
+                        class="flex justify-center items-center px-1 rounded text-gray-600 bg-beige-1"
+                        >{{ status.tasks.length }}</span
+                    >
+                </div>
+                <p
+                    *ngIf="status.tasks.length === 0; else taskList"
+                    class="mb-3"
                 >
-            </div>
-            <div class="flex flex-wrap">
-                <dashboard-task-card
-                    class="flex flex-wrap w-1/2 pb-3 even:pl-3"
-                ></dashboard-task-card>
-                <dashboard-task-card
-                    class="flex flex-wrap w-1/2 pb-3 even:pl-3"
-                ></dashboard-task-card>
-                <dashboard-task-card
-                    class="flex flex-wrap w-1/2 pb-3 even:pl-3"
-                ></dashboard-task-card>
-                <dashboard-task-card
-                    class="flex flex-wrap w-1/2 pb-3 even:pl-3"
-                ></dashboard-task-card>
-            </div>
-        </section>
+                    This status has not tasks
+                </p>
+                <ng-template #taskList>
+                    <div class="flex flex-wrap">
+                        <dashboard-task-card
+                            class="flex flex-wrap w-1/2 pb-3 even:pl-3"
+                            *ngFor="let task of status.tasks"
+                            [task]="task"
+                        ></dashboard-task-card>
+                    </div>
+                </ng-template>
+            </section>
+        </ng-template>
     </div>
     <div class="col-span-4 p-5 overflow-scroll rounded bg-blue-light-2/20">
         <h3 class="text-xl font-semibold text-gray-600 mb-3">Projects</h3>
