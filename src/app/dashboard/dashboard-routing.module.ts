@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { TasksComponent } from './pages/tasks/tasks.component';
+import { TaskListComponent } from './pages/task-list/task-list.component';
 import { ProjectListComponent } from './pages/project-list/project-list.component';
-import { TeamsComponent } from './pages/teams/teams.component';
+import { TeamListComponent } from './pages/team-list/team-list.component';
 import { WorkflowListComponent } from './pages/workflow-list/workflow-list.component';
 import { WorkflowDetailComponent } from './pages/workflow-detail/workflow-detail.component';
 
@@ -29,7 +29,7 @@ const routes: Routes = [
             },
             {
                 path: 'tasks',
-                component: TasksComponent,
+                component: TaskListComponent,
             },
             {
                 path: 'projects',
@@ -37,7 +37,7 @@ const routes: Routes = [
             },
             {
                 path: 'teams',
-                component: TeamsComponent,
+                component: TeamListComponent,
             }
         ],
     },
