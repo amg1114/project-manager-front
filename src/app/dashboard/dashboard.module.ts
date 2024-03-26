@@ -8,7 +8,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AsideComponent } from './components/aside/aside.component';
 import { WorkflowDetailComponent } from './pages/workflow-detail/workflow-detail.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
-import { ProjectsComponent } from './pages/projects/projects.component';
+import { ProjectListComponent } from './pages/project-list/project-list.component';
 import { TeamsComponent } from './pages/teams/teams.component';
 import { WorkflowListComponent } from './pages/workflow-list/workflow-list.component';
 
@@ -26,7 +26,7 @@ import { WorkflowCardComponent } from './components/cards/workflow-card/workflow
         ProjectCardComponent,
         WorkflowDetailComponent,
         TasksComponent,
-        ProjectsComponent,
+        ProjectListComponent,
         TeamsComponent,
         WorkflowListComponent,
         WorkflowCardComponent,

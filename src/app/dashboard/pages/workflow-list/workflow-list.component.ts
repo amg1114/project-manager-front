@@ -22,7 +22,6 @@ export class WorkflowListComponent implements OnInit {
             this.workflowsService
             .getWorkflowsByManager(loggedUser.sub)
             .subscribe((workflows) => {
-                    console.log('test', workflows);
                     this.workflows = workflows;
                 });
         }
